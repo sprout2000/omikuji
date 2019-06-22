@@ -1,11 +1,11 @@
 {
   "name": "omikuji",
   "version": "3.0.6",
-  "homepage": "https://officenishigami.github.io/omikuji",
+  "homepage": "https://iwashifry.github.io/omikuji",
   "private": true,
   "license": "MIT",
   "author": {
-    "name": "OfficeNishigami",
+    "name": "iwashifry",
     "email": "office@nishigami.jp"
   },
   "scripts": {
