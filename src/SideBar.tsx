@@ -33,7 +33,9 @@ const SideBar = (props: Props): JSX.Element => (
           <Icon icon="md-info" style={{ color: '#999' }} size={24} />
         </div>
         <div className="center sidebar-text">
-          <a href="https://github.com/prefab1983/omikuji">このアプリについて</a>
+          <a href="https://github.com/officenishigami/omikuji">
+            このアプリについて
+          </a>
         </div>
       </ListItem>
     </List>
