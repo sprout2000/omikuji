@@ -1,0 +1,81 @@
+.App {
+  text-align: center;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.omikuji-container {
+  margin-bottom: 20px;
+}
+
+.button-container {
+  margin-bottom: 20px;
+}
+
+.card-container {
+  min-width: 90vw;
+}
+
+.card-header {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.card-content {
+  padding-top: 10px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drawer-header {
+  height: 120px;
+  background-image: url('./img/cover.png');
+  background-size: cover;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  padding-left: 20px;
+  flex-direction: column;
+  font-size: 0.8em;
+  line-height: 0.25;
+}
+
+.sidebar-text {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 50vmin;
+}
+
+.Running {
+  animation: App-logo-spin infinite 0.7s linear;
+  height: 50vmin;
+}
+
+.fortune {
+  height: 50vmin;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
