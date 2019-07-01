@@ -1,11 +1,11 @@
 {
   "name": "omikuji",
   "version": "3.0.6",
-  "homepage": "https://maydaymin.github.io/omikuji",
+  "homepage": "https://tofumen.github.io/omikuji",
   "private": true,
   "license": "MIT",
   "author": {
-    "name": "maydaymin",
+    "name": "tofumen",
     "email": "office@nishigami.jp"
   },
   "scripts": {
