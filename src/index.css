@@ -18,7 +18,10 @@ code {
     monospace;
 }
 
-a, a:visited, a:hover, a:active {
+a,
+a:visited,
+a:hover,
+a:active {
   text-decoration: none;
   color: #666;
   font-size: 0.9em;
