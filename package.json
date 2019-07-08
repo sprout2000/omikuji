@@ -1,11 +1,11 @@
 {
   "name": "omikuji",
   "version": "3.0.6",
-  "homepage": "https://tofumen.github.io/omikuji",
+  "homepage": "https://tofugeek.github.io/omikuji",
   "private": true,
   "license": "MIT",
   "author": {
-    "name": "tofumen",
+    "name": "tofugeek",
     "email": "office@nishigami.jp"
   },
   "scripts": {
