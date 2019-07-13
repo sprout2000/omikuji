@@ -72,29 +72,25 @@ class App extends React.Component {
   public componentDidMount(): void {
     localforage
       .getItem('omikuji-20190501')
-      .then(
-        (value: unknown): void => {
-          if (!value) {
-            this.setState({ scores: [] });
-          } else {
-            this.setState({ scores: value });
-          }
+      .then((value: unknown): void => {
+        if (!value) {
+          this.setState({ scores: [] });
+        } else {
+          this.setState({ scores: value });
         }
-      )
-      .catch(
-        (err: Error): void => {
-          console.error(err);
-        }
-      );
+      })
+      .catch((err: Error): void => {
+        console.error(err);
+      });
   }
 
   public componentDidUpdate(prevProps: Props, prevState: State): void {
     if (this.state.scores !== prevState.scores) {
-      localforage.setItem('omikuji-20190501', this.state.scores).catch(
-        (err): void => {
+      localforage
+        .setItem('omikuji-20190501', this.state.scores)
+        .catch((err): void => {
           console.error(err);
-        }
-      );
+        });
     }
   }
 
@@ -109,7 +105,7 @@ class App extends React.Component {
     </Toolbar>
   );
 
-  public renderTabs = (): { content: JSX.Element; tab: JSX.Element }[] => {
+  private renderTabs = (): { content: JSX.Element; tab: JSX.Element }[] => {
     return [
       {
         content: (
@@ -131,30 +127,28 @@ class App extends React.Component {
     ];
   };
 
-  public increment = (): void => {
-    this.setState(
-      (prev: State): { count: number } => {
-        return {
-          count: prev.count + 1,
-        };
-      }
-    );
+  private increment = (): void => {
+    this.setState((prev: State): { count: number } => {
+      return {
+        count: prev.count + 1,
+      };
+    });
   };
 
-  public onReload = (): void => {
+  private onReload = (): void => {
     window.location.reload();
   };
-  public openDrawer = (): void => {
+  private openDrawer = (): void => {
     this.setState({ drawerOpen: true });
   };
-  public closeDrawer = (): void => {
+  private closeDrawer = (): void => {
     this.setState({ drawerOpen: false });
   };
-  public toggleDrawer = (): void => {
+  private toggleDrawer = (): void => {
     this.setState({ drawerOpen: !this.state.drawerOpen });
   };
 
-  public handleOnConfirm = (): void => {
+  private handleOnConfirm = (): void => {
     ons.notification.confirm({
       title: '(´･ω･`)',
       message: '本当に消しちゃうの？',
@@ -169,7 +163,7 @@ class App extends React.Component {
     this.closeDrawer();
   };
 
-  public onDeleteHistory = (): void => {
+  private onDeleteHistory = (): void => {
     this.setState({
       imgNum: 0,
       cName: 'App-logo',
@@ -177,15 +171,15 @@ class App extends React.Component {
       scores: [],
       count: 0,
     });
-    localforage.setItem('omikuji-20190501', this.state.scores).catch(
-      (err): void => {
+    localforage
+      .setItem('omikuji-20190501', this.state.scores)
+      .catch((err): void => {
         console.error(err);
-      }
-    );
+      });
     this.closeDrawer();
   };
 
-  public handleOnClick = (): void => {
+  private handleOnClick = (): void => {
     if (this.state.count > 2) {
       ons.notification.alert({
         title: '(´･ω･`)',
