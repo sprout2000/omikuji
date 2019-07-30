@@ -4,7 +4,7 @@ import devServer from 'webpack-dev-server';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
-import MiniCSSExtractPlugin from 'mini-css-extract-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -32,7 +32,13 @@ const config: webpack.Configuration = {
       {
         test: /\.css$/,
         use: [
-          MiniCSSExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: isDev,
+              reloadAll: true,
+            },
+          },
           {
             loader: 'css-loader',
             options: {
@@ -66,7 +72,7 @@ const config: webpack.Configuration = {
         toType: 'dir',
       },
     ]),
-    new MiniCSSExtractPlugin({}),
+    new MiniCssExtractPlugin({}),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: 'service-worker.js',
       clientsClaim: true,
