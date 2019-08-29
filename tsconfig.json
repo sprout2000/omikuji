@@ -5,7 +5,7 @@
       "node_modules/@types"
     ],
     "target": "es2015",
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "sourceMap": true,

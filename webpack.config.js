@@ -1,19 +1,13 @@
-import path from 'path';
-import webpack from 'webpack';
-import devServer from 'webpack-dev-server';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
-import MiniCSSExtractPlugin from 'mini-css-extract-plugin';
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 
-const server: devServer.Configuration = {
-  contentBase: path.resolve(__dirname, 'build'),
-  port: 7777,
-};
-
-const config: webpack.Configuration = {
+/** @type import('webpack').Configuration */
+const config = {
   mode: isDev ? 'development' : 'production',
   entry: './src/index.tsx',
   output: {
@@ -32,7 +26,13 @@ const config: webpack.Configuration = {
       {
         test: /\.css$/,
         use: [
-          MiniCSSExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: isDev,
+              reloadAll: true,
+            },
+          },
           {
             loader: 'css-loader',
             options: {
@@ -66,7 +66,7 @@ const config: webpack.Configuration = {
         toType: 'dir',
       },
     ]),
-    new MiniCSSExtractPlugin({}),
+    new MiniCssExtractPlugin({}),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: 'service-worker.js',
       clientsClaim: true,
@@ -78,7 +78,10 @@ const config: webpack.Configuration = {
   },
   stats: 'minimal',
   devtool: isDev ? 'source-map' : false,
-  devServer: server,
+  devServer: {
+    contentBase: path.resolve(__dirname, 'build'),
+    port: 7777,
+  },
 };
 
-export default config;
+module.exports = config;
