@@ -49,6 +49,7 @@ const HistoryPage = (props: Props): JSX.Element => (
         {props.scores.map(
           (score): JSX.Element => {
             return (
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
               <ListItem
                 key={score.id}

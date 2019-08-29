@@ -235,6 +235,7 @@ class App extends React.Component {
           <SplitterContent>
             <Tabbar
               renderTabs={this.renderTabs}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
               onPreChange={({ index }): void =>
                 this.setState({
