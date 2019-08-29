@@ -98,7 +98,7 @@ class App extends React.Component {
     <Toolbar>
       <div className="left">
         <ToolbarButton onClick={this.toggleDrawer}>
-          <Icon icon="ion-navicon, material:md-menu" />
+          <Icon icon="md-menu" />
         </ToolbarButton>
       </div>
       <div className="center">{this.state.title}</div>
