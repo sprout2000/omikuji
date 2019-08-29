@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "typeRoots": [
-      "types",
+      "@types",
       "node_modules/@types"
     ],
     "target": "es2015",
