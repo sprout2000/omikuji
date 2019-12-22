@@ -2,17 +2,18 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 
 /** @type import('webpack').Configuration */
-const config = {
+module.exports = {
   mode: isDev ? 'development' : 'production',
-  entry: './src/index.tsx',
+  entry: {
+    app: './src/App.tsx',
+  },
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -25,15 +26,7 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: isDev ? true : false,
-            },
-          },
-        ],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(gif|tiff|png|jpe?g|svg|eot|wof|woff|woff2|ttf)$/,
@@ -48,10 +41,24 @@ const config = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          name: 'vendor',
+          chunks: 'initial',
+          enforce: true,
+        },
+      },
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       favicon: 'src/favicon.ico',
+      chunks: ['app', 'vendor'],
+      filename: 'index.html',
     }),
     new CopyWebpackPlugin([
       {
@@ -60,7 +67,6 @@ const config = {
         toType: 'dir',
       },
     ]),
-    new MiniCssExtractPlugin({}),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: 'service-worker.js',
       clientsClaim: true,
@@ -70,12 +76,9 @@ const config = {
   performance: {
     hints: false,
   },
-  stats: 'minimal',
   devtool: isDev ? 'source-map' : false,
   devServer: {
-    contentBase: path.resolve(__dirname, 'build'),
+    contentBase: path.resolve(__dirname, 'dist'),
     port: 7777,
   },
 };
-
-module.exports = config;
