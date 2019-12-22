@@ -1,6 +1,6 @@
 {
   "name": "omikuji",
-  "version": "3.0.6",
+  "version": "0.0.1",
   "homepage": "https://sprout2000.github.io/omikuji",
   "private": true,
   "license": "MIT",
@@ -9,11 +9,11 @@
     "email": "office@nishigami.jp"
   },
   "scripts": {
-    "clean": "rm -rf build/*",
+    "clean": "rimraf dist/*",
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
     "build": "cross-env NODE_ENV=\"production\" webpack --progress --hide-modules",
     "predeploy": "npm-run-all clean build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {},
   "devDependencies": {
@@ -35,13 +35,13 @@
     "gh-pages": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "localforage": "^1.7.3",
-    "mini-css-extract-plugin": "^0.9.0",
     "npm-run-all": "^4.1.5",
     "onsenui": "^2.10.10",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-onsenui": "^1.11.2",
+    "rimraf": "^3.0.0",
     "style-loader": "^1.1.1",
     "ts-loader": "^6.2.1",
     "ts-node": "^8.5.4",
