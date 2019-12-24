@@ -38,7 +38,7 @@ const HomePage = (props: Props): JSX.Element => (
       </div>
       <div className="button-container">
         <Button onClick={props.omikuji} disabled={props.disable ? true : false}>
-          <Icon icon="ion-pricetags" size={24} style={{ marginRight: 10 }} />
+          <Icon icon="fa-tags" style={{ marginRight: 5 }} />
           おみくじ
         </Button>
       </div>
