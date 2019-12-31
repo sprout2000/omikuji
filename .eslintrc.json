@@ -1,9 +1,17 @@
 {
   "env": {
-    "browser": true,
     "es6": true,
-    "commonjs": true,
-    "node": true
+    "node": true,
+    "browser": true,
+    "commonjs": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "settings": {
     "react": {
@@ -11,23 +19,19 @@
     }
   },
   "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/@typescript-eslint"
   ],
   "plugins": [
+    "@typescript-eslint",
     "react",
     "prettier"
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
   "rules": {
     "prettier/prettier": [
       "error",
@@ -37,8 +41,7 @@
         "arrowParens": "always",
         "jsxBracketSameLine": true
       }
-    ],
-  "no-console": 0
+    ]
   },
   "overrides": [
     {

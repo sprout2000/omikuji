@@ -1,6 +1,6 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -8,20 +8,21 @@ const isDev = process.env.NODE_ENV === 'development';
 /** @type import('webpack').Configuration */
 module.exports = {
   mode: isDev ? 'development' : 'production',
+  resolve: {
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
+  },
   entry: {
     app: './src/App.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js',
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    filename: '[name].js',
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
+        exclude: /node_modules/,
         loader: 'ts-loader',
       },
       {
@@ -29,15 +30,11 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(gif|tiff|png|jpe?g|svg|eot|wof|woff|woff2|ttf)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'img/[name].[ext]',
-            },
-          },
-        ],
+        test: /\.(bmp|gif|png|jpe?g|svg|ttf|eot|woff?2?)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'icons/[name].[ext]',
+        },
       },
     ],
   },
@@ -55,30 +52,36 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      favicon: 'src/favicon.ico',
+      template: './src/index.html',
+      favicon: './src/favicon.ico',
       chunks: ['app', 'vendor'],
       filename: 'index.html',
     }),
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin(
+      [
+        {
+          from: 'assets',
+          to: '.',
+          toType: 'dir',
+        },
+      ],
       {
-        from: 'assets',
-        to: './',
-        toType: 'dir',
-      },
-    ]),
+        ignore: ['.DS_Store'],
+      }
+    ),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: 'service-worker.js',
-      clientsClaim: true,
       skipWaiting: true,
+      clientsClaim: true,
     }),
   ],
   performance: {
     hints: false,
   },
-  devtool: isDev ? 'source-map' : false,
+  devtool: isDev ? 'inline-source-map' : false,
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
-    port: 7777,
+    port: 3000,
+    open: true,
   },
 };
