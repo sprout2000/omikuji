@@ -86,7 +86,7 @@ class App extends React.Component {
       });
   }
 
-  public componentDidUpdate(prevProps: Props, prevState: State): void {
+  public componentDidUpdate(_prevProps: Props, prevState: State): void {
     if (this.state.scores !== prevState.scores) {
       localforage
         .setItem('omikuji-20190501', this.state.scores)
