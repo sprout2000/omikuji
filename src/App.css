@@ -65,7 +65,7 @@ a:active {
 
 .drawer-header {
   height: 120px;
-  background-image: url("./img/cover.png");
+  background-image: url("cover.png");
   background-size: cover;
   background-color: #f5f5f5;
   display: flex;

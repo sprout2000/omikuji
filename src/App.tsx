@@ -98,12 +98,12 @@ class App extends React.Component {
 
   public renderToolbar = (): JSX.Element => (
     <Toolbar>
-      <div className="left">
+      <div className='left'>
         <ToolbarButton onClick={this.toggleDrawer}>
-          <Icon icon="md-menu" />
+          <Icon icon='md-menu' />
         </ToolbarButton>
       </div>
-      <div className="center">{this.state.title}</div>
+      <div className='center'>{this.state.title}</div>
     </Toolbar>
   );
 
@@ -112,7 +112,7 @@ class App extends React.Component {
       {
         content: (
           <HomePage
-            key="Home"
+            key='Home'
             omikuji={this.handleOnClick}
             imgNum={this.state.imgNum}
             cName={this.state.cName}
@@ -120,11 +120,11 @@ class App extends React.Component {
             disable={this.state.disable}
           />
         ),
-        tab: <Tab key="Home" label="おみくじ" icon="md-home" />,
+        tab: <Tab key='Home' label='おみくじ' icon='md-home' />,
       },
       {
-        content: <HistoryPage key="settings" scores={this.state.scores} />,
-        tab: <Tab key="settings" label="履歴" icon="md-time" />,
+        content: <HistoryPage key='settings' scores={this.state.scores} />,
+        tab: <Tab key='settings' label='履歴' icon='md-time' />,
       },
     ];
   };
@@ -221,7 +221,7 @@ class App extends React.Component {
       <Page renderToolbar={this.renderToolbar}>
         <Splitter>
           <SplitterSide
-            side="left"
+            side='left'
             width={250}
             collapse={true}
             swipeable={true}

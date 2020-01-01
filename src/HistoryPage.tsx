@@ -36,13 +36,13 @@ const fortuneStyle = (fortune: string): { color: string } => {
 
 const HistoryPage = (props: Props): JSX.Element => (
   <Page>
-    <div className="history-container">
+    <div className='history-container'>
       <List style={{ minWidth: '90vw', marginTop: 10 }}>
-        <ListItem modifier="longdivider">
-          <div className="left" style={{ color: '#666' }}>
+        <ListItem modifier='longdivider'>
+          <div className='left' style={{ color: '#666' }}>
             時間
           </div>
-          <div className="center" style={{ color: '#666', marginLeft: '7em' }}>
+          <div className='center' style={{ color: '#666', marginLeft: '7em' }}>
             運勢
           </div>
         </ListItem>
@@ -55,12 +55,12 @@ const HistoryPage = (props: Props): JSX.Element => (
                 key={score.id}
                 style={fortuneStyle(score.fortune)}
                 expandable>
-                <div className="left">{score.createdAt}</div>
-                <div className="center" style={{ marginLeft: '1em' }}>
+                <div className='left'>{score.createdAt}</div>
+                <div className='center' style={{ marginLeft: '1em' }}>
                   {score.fortune}
                 </div>
                 <div
-                  className="expandable-content"
+                  className='expandable-content'
                   style={{ textAlign: 'center', color: '#666' }}>
                   {score.oracle}
                 </div>

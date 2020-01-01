@@ -9,7 +9,7 @@ const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
   mode: isDev ? 'development' : 'production',
   resolve: {
-    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   entry: {
     app: './src/App.tsx',
@@ -26,14 +26,14 @@ module.exports = {
         loader: 'ts-loader',
       },
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(bmp|gif|png|jpe?g|svg|ttf|eot|woff?2?)$/,
+        test: /\.(bmp|gif|jpe?g|png|svg|ttf|eot|woff?2?)$/,
         loader: 'file-loader',
         options: {
-          name: 'icons/[name].[ext]',
+          name: 'images/[name].[ext]',
         },
       },
     ],
@@ -57,31 +57,23 @@ module.exports = {
       chunks: ['app', 'vendor'],
       filename: 'index.html',
     }),
-    new CopyWebpackPlugin(
-      [
-        {
-          from: 'assets',
-          to: '.',
-          toType: 'dir',
-        },
-      ],
+    new CopyWebpackPlugin([
       {
-        ignore: ['.DS_Store'],
-      }
-    ),
+        from: 'assets',
+        to: '.',
+        toType: 'dir',
+      },
+    ]),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: 'service-worker.js',
       skipWaiting: true,
       clientsClaim: true,
     }),
   ],
-  performance: {
-    hints: false,
-  },
   devtool: isDev ? 'inline-source-map' : false,
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
-    port: 3000,
+    port: 7777,
     open: true,
   },
 };
