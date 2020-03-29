@@ -37,9 +37,6 @@
       "error",
       {
         "singleQuote": true,
-        "trailingComma": "es5",
-        "arrowParens": "always",
-        "jsxSingleQuote": true,
         "jsxBracketSameLine": true
       }
     ]
