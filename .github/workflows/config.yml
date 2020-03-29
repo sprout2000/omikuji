@@ -2,8 +2,8 @@ name: Release GitHub Pages
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'
 
 jobs:
   build:
