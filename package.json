@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": {
     "name": "sprout2000",
-    "email": "office@nishigami.jp"
+    "email": "k_konno1983@yahoo.co.jp"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
