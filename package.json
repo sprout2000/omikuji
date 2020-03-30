@@ -8,13 +8,21 @@
     "name": "sprout2000",
     "email": "k_konno1983@yahoo.co.jp"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
+    "upgrade-interactive": "npm-check --update",
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
     "build": "cross-env NODE_ENV=\"production\" webpack --progress --hide-modules",
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
     "release:push": "git push --follow-tags origin master"
+  },
+  "resolutions": {
+    "minimist": "^1.2.5"
   },
   "dependencies": {
     "localforage": "^1.7.3",
@@ -42,6 +50,7 @@
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.0.3",
     "mini-css-extract-plugin": "^0.9.0",
+    "npm-check": "^5.9.2",
     "prettier": "^2.0.2",
     "standard-version": "^7.1.0",
     "style-loader": "^1.1.3",
