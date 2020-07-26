@@ -1,15 +1,14 @@
 import React from 'react';
 import { Page, List, ListItem, Icon } from 'react-onsenui';
 
-import pjson from '../package.json';
+import pjson from '../../package.json';
 
 interface Props {
-  onReload: React.MouseEventHandler<void>;
-  onDelete: Function;
-  onConfirm: React.MouseEventHandler<void>;
+  onReload: () => void;
+  onConfirm: () => void;
 }
 
-const SideBar = (props: Props): JSX.Element => (
+const SideBar: React.FC<Props> = (props) => (
   <Page>
     <List className="drawer">
       <div className="drawer-header">
@@ -33,7 +32,12 @@ const SideBar = (props: Props): JSX.Element => (
           <Icon icon="md-info" style={{ color: '#999' }} size={24} />
         </div>
         <div className="center sidebar-text">
-          <a href="https://github.com/sprout2000/omikuji">このアプリについて</a>
+          <a
+            rel="noreferrer"
+            target="_blank"
+            href="https://github.com/sprout2000/omikuji">
+            ソースコードURL
+          </a>
         </div>
       </ListItem>
     </List>

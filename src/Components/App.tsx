@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import localforage from 'localforage';
 import ons from 'onsenui';
@@ -19,10 +18,6 @@ import HistoryPage from './HistoryPage';
 import HomePage from './HomePage';
 import SideBar from './SideBar';
 import ORACLES from './Oracles';
-
-import 'onsenui/css/onsenui.min.css';
-import 'onsenui/css/onsen-css-components.min.css';
-import './App.css';
 
 interface Score {
   createdAt: string;
@@ -73,30 +68,26 @@ class App extends React.Component {
 
   public componentDidMount(): void {
     localforage
-      .getItem('omikuji-20190501')
-      .then((value: unknown): void => {
+      .getItem('omikuji-20200801')
+      .then((value): void => {
         if (!value) {
           this.setState({ scores: [] });
         } else {
           this.setState({ scores: value });
         }
       })
-      .catch((err: Error): void => {
-        console.error(err);
-      });
+      .catch((err): void => console.error(err));
   }
 
   public componentDidUpdate(_prevProps: Props, prevState: State): void {
     if (this.state.scores !== prevState.scores) {
       localforage
-        .setItem('omikuji-20190501', this.state.scores)
-        .catch((err): void => {
-          console.error(err);
-        });
+        .setItem('omikuji-20200801', this.state.scores)
+        .catch((err): void => console.error(err));
     }
   }
 
-  public renderToolbar = (): JSX.Element => (
+  private renderToolbar = (): JSX.Element => (
     <Toolbar>
       <div className="left">
         <ToolbarButton onClick={this.toggleDrawer}>
@@ -150,21 +141,6 @@ class App extends React.Component {
     this.setState({ drawerOpen: !this.state.drawerOpen });
   };
 
-  private handleOnConfirm = (): void => {
-    ons.notification.confirm({
-      title: '(´･ω･`)',
-      message: '本当に消しちゃうの？',
-      buttonLabels: ['いいえ', 'はい'],
-      cancelable: true,
-      callback: (index: number): void => {
-        if (index === 1) {
-          this.onDeleteHistory();
-        }
-      },
-    });
-    this.closeDrawer();
-  };
-
   private onDeleteHistory = (): void => {
     this.setState({
       imgNum: 0,
@@ -178,6 +154,21 @@ class App extends React.Component {
       .catch((err): void => {
         console.error(err);
       });
+    this.closeDrawer();
+  };
+
+  private handleOnConfirm = (): void => {
+    ons.notification.confirm({
+      title: '(´･ω･`)',
+      message: '本当に消しちゃうの？',
+      buttonLabels: ['いいえ', 'はい'],
+      cancelable: true,
+      callback: (index: number): void => {
+        if (index === 1) {
+          this.onDeleteHistory();
+        }
+      },
+    });
     this.closeDrawer();
   };
 
@@ -231,13 +222,12 @@ class App extends React.Component {
             <SideBar
               onReload={this.onReload}
               onConfirm={this.handleOnConfirm}
-              onDelete={this.onDeleteHistory}
             />
           </SplitterSide>
           <SplitterContent>
             <Tabbar
               renderTabs={this.renderTabs}
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               onPreChange={({ index }): void =>
                 this.setState({
@@ -255,14 +245,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
-if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-  window.addEventListener('load', (): void => {
-    navigator.serviceWorker.register('./service-worker.js');
-  });
-}
-
-if (ons.platform.isIPhoneX()) {
-  document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
-}
+export default App;

@@ -19,7 +19,6 @@ a:hover,
 a:active {
   text-decoration: none;
   color: #666;
-  font-size: 0.9em;
 }
 
 .App {
@@ -78,7 +77,7 @@ a:active {
 
 .sidebar-text {
   color: #666;
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
 .App-logo {

@@ -34,7 +34,7 @@ const fortuneStyle = (fortune: string): { color: string } => {
   }
 };
 
-const HistoryPage = (props: Props): JSX.Element => (
+const HistoryPage: React.FC<Props> = (props) => (
   <Page>
     <div className="history-container">
       <List style={{ minWidth: '90vw', marginTop: 10 }}>
@@ -49,8 +49,6 @@ const HistoryPage = (props: Props): JSX.Element => (
         {props.scores.map(
           (score): JSX.Element => {
             return (
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-              // @ts-ignore
               <ListItem
                 key={score.id}
                 style={fortuneStyle(score.fortune)}

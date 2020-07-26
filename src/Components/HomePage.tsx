@@ -21,7 +21,7 @@ const IMAGES = [
   'images/daikyou.png',
 ];
 
-const HomePage = (props: Props): JSX.Element => (
+const HomePage: React.FC<Props> = (props) => (
   <Page>
     <div className="container">
       <div className="omikuji-container">
