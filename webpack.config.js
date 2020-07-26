@@ -1,8 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin').GenerateSW;
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -13,7 +15,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   entry: {
-    app: './src/App.tsx',
+    app: './src/main.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -24,7 +26,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        loader: 'ts-loader',
+        loaders: ['babel-loader', 'ts-loader'],
       },
       {
         test: /\.s?css$/,
@@ -48,13 +50,14 @@ module.exports = {
     ],
   },
   optimization: {
+    minimizer: [new TerserWebpackPlugin(), new OptimizeCSSAssetsPlugin()],
+    runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
         vendor: {
-          test: /node_modules/,
+          test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
-          chunks: 'initial',
-          enforce: true,
+          chunks: 'all',
         },
       },
     },
@@ -67,13 +70,9 @@ module.exports = {
           chunks: ['app', 'vendor'],
           filename: 'index.html',
         }),
-        new CopyWebpackPlugin([
-          {
-            from: 'assets',
-            to: '.',
-            toType: 'dir',
-          },
-        ]),
+        new CopyWebpackPlugin({
+          patterns: [{ from: 'assets', to: '.' }],
+        }),
       ]
     : [
         new MiniCssExtractPlugin({}),
@@ -83,23 +82,21 @@ module.exports = {
           chunks: ['app', 'vendor'],
           filename: 'index.html',
         }),
-        new CopyWebpackPlugin([
-          {
-            from: 'assets',
-            to: '.',
-            toType: 'dir',
-          },
-        ]),
-        new WorkboxWebpackPlugin.GenerateSW({
+        new CopyWebpackPlugin({
+          patterns: [{ from: 'assets', to: '.' }],
+        }),
+        new WorkboxWebpackPlugin({
           swDest: 'service-worker.js',
           skipWaiting: true,
           clientsClaim: true,
         }),
       ],
+  performance: {
+    hints: false,
+  },
   devtool: isDev ? 'inline-source-map' : false,
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     port: 7777,
-    open: true,
   },
 };
