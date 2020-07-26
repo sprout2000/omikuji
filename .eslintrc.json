@@ -18,6 +18,7 @@
       "version": "detect"
     }
   },
+  "plugins": ["@typescript-eslint", "react", "prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -27,11 +28,6 @@
     "prettier/react",
     "prettier/@typescript-eslint"
   ],
-  "plugins": [
-    "@typescript-eslint",
-    "react",
-    "prettier"
-  ],
   "rules": {
     "prettier/prettier": [
       "error",
@@ -39,7 +35,8 @@
         "singleQuote": true,
         "jsxBracketSameLine": true
       }
-    ]
+    ],
+    "react/prop-types": "off"
   },
   "overrides": [
     {
