@@ -68,14 +68,14 @@
     "workbox-webpack-plugin": "^5.1.2"
   },
   "optionalDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.7.0",
-    "@typescript-eslint/parser": "^3.7.0",
-    "eslint": "^7.5.0",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
+    "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.19.0",
-    "prettier": "^2.0.2",
-    "standard-version": "^8.0.1"
+    "eslint-plugin-react": "^7.21.1",
+    "prettier": "^2.1.2",
+    "standard-version": "^9.0.0"
   },
   "resolutions": {
     "yargs-parser": "^18.1.2"
