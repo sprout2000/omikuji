@@ -27,11 +27,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" webpack-dev-server",
-    "build": "cross-env NODE_ENV=\"production\" webpack --progress --hide-modules",
-    "release:patch": "standard-version --release-as patch",
-    "release:minor": "standard-version --release-as minor",
-    "release:major": "standard-version --release-as major",
-    "release:push": "git push --follow-tags origin master"
+    "build": "cross-env NODE_ENV=\"production\" webpack --progress --hide-modules"
   },
   "dependencies": {
     "localforage": "^1.7.3",
@@ -74,8 +70,7 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.21.1",
-    "prettier": "^2.1.2",
-    "standard-version": "^9.0.0"
+    "prettier": "^2.1.2"
   },
   "resolutions": {
     "yargs-parser": "^18.1.2"
