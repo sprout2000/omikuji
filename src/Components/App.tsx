@@ -51,11 +51,11 @@ interface Props {
 }
 
 const FORTUNES = ['大吉', '吉', '中吉', '小吉', '末吉', '凶', '大凶'];
-const TITLES = ['おみくじ', '履歴'];
+const TITLES = ['ホーム', '履歴'];
 
 class App extends React.Component {
   public state: State = {
-    title: 'おみくじ',
+    title: 'ホーム',
     scores: [],
     index: 0,
     imgNum: 0,
@@ -111,7 +111,7 @@ class App extends React.Component {
             disable={this.state.disable}
           />
         ),
-        tab: <Tab key="Home" label="おみくじ" icon="md-home" />,
+        tab: <Tab key="Home" label="ホーム" icon="md-home" />,
       },
       {
         content: <HistoryPage key="settings" scores={this.state.scores} />,
