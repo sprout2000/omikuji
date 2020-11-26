@@ -35,8 +35,8 @@ const SideBar: React.FC<Props> = (props) => (
           <a
             rel="noreferrer"
             target="_blank"
-            href="https://github.com/sprout2000/omikuji">
-            ソースコードURL
+            href="https://github.com/sprout2000/omikuji#readme">
+            サポートURL
           </a>
         </div>
       </ListItem>
