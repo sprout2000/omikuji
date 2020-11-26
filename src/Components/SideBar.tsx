@@ -19,7 +19,7 @@ const SideBar: React.FC<Props> = (props) => (
         <div className="left">
           <Icon icon="md-refresh" style={{ color: '#007aff' }} size={24} />
         </div>
-        <div className="center sidebar-text">アプリを再読込み</div>
+        <div className="center sidebar-text">リセットする</div>
       </ListItem>
       <ListItem tappable onClick={props.onConfirm}>
         <div className="left">
@@ -35,8 +35,8 @@ const SideBar: React.FC<Props> = (props) => (
           <a
             rel="noreferrer"
             target="_blank"
-            href="https://github.com/sprout2000/omikuji">
-            ソースコードURL
+            href="https://github.com/sprout2000/omikuji#readme">
+            サポートURL
           </a>
         </div>
       </ListItem>

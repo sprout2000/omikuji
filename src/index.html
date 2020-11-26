@@ -3,6 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' https://sprout2000.github.io"
+    />
     <meta name="description" content="おみくじアプリ" />
     <meta name="theme-color" content="#d32f2f" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -86,9 +90,7 @@
     <title>おみくじ</title>
   </head>
   <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
+    <noscript> You need to enable JavaScript to run this app. </noscript>
     <div id="root"></div>
   </body>
 </html>
