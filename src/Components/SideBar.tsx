@@ -19,7 +19,7 @@ const SideBar: React.FC<Props> = (props) => (
         <div className="left">
           <Icon icon="md-refresh" style={{ color: '#007aff' }} size={24} />
         </div>
-        <div className="center sidebar-text">アプリを再読込み</div>
+        <div className="center sidebar-text">リセットする</div>
       </ListItem>
       <ListItem tappable onClick={props.onConfirm}>
         <div className="left">
