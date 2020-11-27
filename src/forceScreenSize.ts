@@ -1,9 +1,5 @@
-import { insideInstalledApp } from './insideInstalledApp';
-
-export const forceScreeSize = (width: number, height: number): void => {
-  if (insideInstalledApp()) {
-    window.addEventListener('resize', () => {
-      window.resizeTo(width, height);
-    });
+export const forceScreenSize = (width: number, height: number): void => {
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    window.resizeTo(width, height);
   }
 };
