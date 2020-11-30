@@ -10,10 +10,6 @@ import 'onsenui/css/onsen-css-components.min.css';
 import './styles.css';
 
 if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-  window.addEventListener('resize', () => {
-    forceScreenSize(400, 600);
-  });
-
   window.addEventListener('load', () => {
     forceScreenSize(400, 600);
     navigator.serviceWorker.register('./service-worker.js');
