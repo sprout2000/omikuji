@@ -6,8 +6,14 @@
   "icons": [
     {
       "src": "./favicon.ico",
-      "sizes": "128x128",
+      "sizes": "64x64",
       "type": "image/x-icon"
+    },
+    {
+      "src": "icons/manifest-icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
     },
     {
       "src": "icons/manifest-icon-192.png",
