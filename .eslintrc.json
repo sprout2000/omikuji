@@ -5,6 +5,11 @@
     "browser": true,
     "commonjs": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
@@ -13,30 +18,17 @@
       "jsx": true
     }
   },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
   "plugins": ["@typescript-eslint", "react"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "prettier",
+    "prettier/@typescript-eslint",
     "prettier/react",
-    "prettier/@typescript-eslint"
+    "prettier"
   ],
   "rules": {
     "react/prop-types": "off"
-  },
-  "overrides": [
-    {
-      "files": ["*.js"],
-      "rules": {
-        "@typescript-eslint/no-var-requires": "off"
-      }
-    }
-  ]
+  }
 }

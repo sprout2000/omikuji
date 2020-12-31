@@ -1,15 +1,16 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin').GenerateSW;
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+import { Configuration } from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import TerserWebpackPlugin from 'terser-webpack-plugin';
+import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CssMinimizerWebpackPlugin from 'css-minimizer-webpack-plugin';
+
+import path from 'path';
 
 const isDev = process.env.NODE_ENV === 'development';
 
-/** @type import('webpack').Configuration */
-module.exports = {
+const config: Configuration = {
   mode: isDev ? 'development' : 'production',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
@@ -18,15 +19,17 @@ module.exports = {
     app: './src/index.tsx',
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public'),
+    publicPath: '',
     filename: '[name].js',
+    assetModuleFilename: 'images/[name][ext]',
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader', 'ts-loader'],
+        use: ['babel-loader', 'ts-loader'],
       },
       {
         test: /\.s?css$/,
@@ -42,33 +45,23 @@ module.exports = {
       },
       {
         test: /\.(bmp|gif|jpe?g|png|svg|ttf|eot|woff?2?)$/,
-        loader: 'file-loader',
-        options: {
-          name: 'images/[name].[ext]',
-        },
+        type: 'asset/resource',
       },
     ],
   },
   optimization: {
-    minimizer: [new TerserWebpackPlugin(), new OptimizeCSSAssetsPlugin()],
-    runtimeChunk: 'single',
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all',
-        },
-      },
-    },
+    minimizer: [new TerserWebpackPlugin(), new CssMinimizerWebpackPlugin()],
   },
   plugins: isDev
     ? [
         new HtmlWebpackPlugin({
           template: './src/index.html',
           favicon: './src/favicon.ico',
-          chunks: ['app', 'vendor'],
+          chunks: ['app'],
           filename: 'index.html',
+          inject: 'body',
+          scriptLoading: 'blocking',
+          minify: !isDev,
         }),
         new CopyWebpackPlugin({
           patterns: [{ from: 'assets', to: '.' }],
@@ -79,13 +72,16 @@ module.exports = {
         new HtmlWebpackPlugin({
           template: './src/index.html',
           favicon: './src/favicon.ico',
-          chunks: ['app', 'vendor'],
+          chunks: ['app'],
           filename: 'index.html',
+          inject: 'body',
+          scriptLoading: 'defer',
+          minify: !isDev,
         }),
         new CopyWebpackPlugin({
           patterns: [{ from: 'assets', to: '.' }],
         }),
-        new WorkboxWebpackPlugin({
+        new WorkboxWebpackPlugin.GenerateSW({
           swDest: 'service-worker.js',
           skipWaiting: true,
           clientsClaim: true,
@@ -96,7 +92,9 @@ module.exports = {
   },
   devtool: isDev ? 'inline-source-map' : false,
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'public'),
     port: 7777,
   },
 };
+
+export default config;
