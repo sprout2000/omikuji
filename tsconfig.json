@@ -1,9 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "*": ["@types/*"]
-    },
     "target": "ES5",
     "module": "es2015",
     "moduleResolution": "node",
@@ -12,6 +8,16 @@
     "sourceMap": true,
     "strict": true,
     "jsx": "react",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["@types/*"]
+    }
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "CommonJS"
+    }
   }
 }
