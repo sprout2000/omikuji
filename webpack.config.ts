@@ -19,7 +19,7 @@ const config: Configuration = {
     app: './src/index.tsx',
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public'),
     filename: '[name].js',
   },
   module: {
@@ -90,7 +90,7 @@ const config: Configuration = {
   },
   devtool: isDev ? 'inline-source-map' : false,
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'public'),
     port: 7777,
   },
 };
