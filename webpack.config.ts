@@ -20,7 +20,7 @@ const config: Configuration = {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    publicPath: 'auto',
+    publicPath: '',
     filename: '[name].js',
     assetModuleFilename: 'images/[name][ext]',
   },
