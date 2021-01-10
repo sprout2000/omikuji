@@ -1,18 +1,14 @@
 {
   "compilerOptions": {
     "target": "ES5",
-    "module": "es2015",
-    "moduleResolution": "node",
+    "module": "ES2015",
+    "moduleResolution": "Node",
     "esModuleInterop": true,
-    "lib": ["dom", "es2015"],
+    "lib": ["DOM", "ES2015"],
     "sourceMap": true,
     "strict": true,
     "jsx": "react",
-    "resolveJsonModule": true,
-    "baseUrl": ".",
-    "paths": {
-      "*": ["@types/*"]
-    }
+    "resolveJsonModule": true
   },
   "ts-node": {
     "compilerOptions": {
