@@ -36,7 +36,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-onsenui": "^1.11.3",
-    "workbox-sw": "^5.1.4"
+    "workbox-sw": "^6.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
