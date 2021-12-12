@@ -1,14 +1,13 @@
-import React from 'react';
 import { Page, List, ListItem, Icon } from 'react-onsenui';
 
 import pjson from '../../package.json';
 
-interface Props {
+type Props = {
   onReload: () => void;
   onConfirm: () => void;
-}
+};
 
-const SideBar: React.FC<Props> = (props) => (
+const SideBar = (props: Props) => (
   <Page>
     <List className="drawer">
       <div className="drawer-header">
@@ -35,7 +34,8 @@ const SideBar: React.FC<Props> = (props) => (
           <a
             rel="noreferrer"
             target="_blank"
-            href="https://github.com/sprout2000/omikuji#readme">
+            href="https://github.com/sprout2000/omikuji#readme"
+          >
             サポートURL
           </a>
         </div>

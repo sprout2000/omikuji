@@ -1,14 +1,12 @@
-import React from 'react';
-
 import { Page, Button, Card, Icon } from 'react-onsenui';
 
-interface Props {
+type Props = {
   omikuji: (e?: React.MouseEvent<HTMLElement>) => void;
   imgNum: number;
   cName: string;
   oracle: string;
   disable: boolean;
-}
+};
 
 const IMAGES = [
   'images/omikuji.png',
@@ -21,7 +19,7 @@ const IMAGES = [
   'images/daikyou.png',
 ];
 
-const HomePage: React.FC<Props> = (props) => (
+const HomePage = (props: Props) => (
   <Page>
     <div className="container">
       <div className="omikuji-container">

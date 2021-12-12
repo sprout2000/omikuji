@@ -1,10 +1,9 @@
+import path from 'path';
 import { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-
-import path from 'path';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -30,7 +29,7 @@ const config: Configuration = {
         loader: 'ts-loader',
       },
       {
-        test: /\.s?css$/,
+        test: /\.css$/,
         use: [
           isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
@@ -70,10 +69,11 @@ const config: Configuration = {
   ],
   stats: 'errors-only',
   performance: { hints: false },
-  devtool: isDev ? 'inline-source-map' : false,
+  devtool: isDev ? 'inline-source-map' : undefined,
   devServer: {
-    contentBase: path.resolve(__dirname, 'docs'),
+    static: './dist',
     port: 7777,
+    open: true,
   },
 };
 

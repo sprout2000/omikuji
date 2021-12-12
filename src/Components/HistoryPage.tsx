@@ -1,17 +1,8 @@
-import React from 'react';
-
 import { Page, List, ListItem } from 'react-onsenui';
 
-interface Score {
-  createdAt: string;
-  fortune: string;
-  id: number;
-  oracle: string;
-}
-
-interface Props {
+type Props = {
   scores: Score[];
-}
+};
 
 const fortuneStyle = (fortune: string): { color: string } => {
   switch (fortune) {
@@ -34,7 +25,7 @@ const fortuneStyle = (fortune: string): { color: string } => {
   }
 };
 
-const HistoryPage: React.FC<Props> = (props) => (
+const HistoryPage = (props: Props) => (
   <Page>
     <div className="history-container">
       <List style={{ minWidth: '90vw', marginTop: 10 }}>
@@ -46,26 +37,26 @@ const HistoryPage: React.FC<Props> = (props) => (
             運勢
           </div>
         </ListItem>
-        {props.scores.map(
-          (score): JSX.Element => {
-            return (
-              <ListItem
-                key={score.id}
-                style={fortuneStyle(score.fortune)}
-                expandable>
-                <div className="left">{score.createdAt}</div>
-                <div className="center" style={{ marginLeft: '1em' }}>
-                  {score.fortune}
-                </div>
-                <div
-                  className="expandable-content"
-                  style={{ textAlign: 'center', color: '#666' }}>
-                  {score.oracle}
-                </div>
-              </ListItem>
-            );
-          }
-        )}
+        {props.scores.map((score) => {
+          return (
+            <ListItem
+              key={score.id}
+              style={fortuneStyle(score.fortune)}
+              expandable
+            >
+              <div className="left">{score.createdAt}</div>
+              <div className="center" style={{ marginLeft: '1em' }}>
+                {score.fortune}
+              </div>
+              <div
+                className="expandable-content"
+                style={{ textAlign: 'center', color: '#666' }}
+              >
+                {score.oracle}
+              </div>
+            </ListItem>
+          );
+        })}
       </List>
     </div>
   </Page>

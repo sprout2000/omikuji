@@ -14,19 +14,12 @@ import {
   SplitterContent,
 } from 'react-onsenui';
 
-import HistoryPage from './HistoryPage';
-import HomePage from './HomePage';
-import SideBar from './SideBar';
 import ORACLES from './Oracles';
+import SideBar from './SideBar';
+import HomePage from './HomePage';
+import HistoryPage from './HistoryPage';
 
-interface Score {
-  createdAt: string;
-  fortune: string;
-  id: number;
-  oracle: string;
-}
-
-interface State {
+type Props = {
   title: string;
   scores: Score[];
   index: number;
@@ -36,19 +29,7 @@ interface State {
   disable: boolean;
   drawerOpen: boolean;
   count: number;
-}
-
-interface Props {
-  title: string;
-  scores: Score[];
-  index: number;
-  imgNum: number;
-  cName: string;
-  oracle: string;
-  disable: boolean;
-  drawerOpen: boolean;
-  count: number;
-}
+};
 
 const FORTUNES = ['大吉', '吉', '中吉', '小吉', '末吉', '凶', '大凶'];
 const TITLES = ['ホーム', '履歴'];
@@ -66,28 +47,28 @@ class App extends React.Component {
     count: 0,
   };
 
-  public componentDidMount(): void {
+  public componentDidMount() {
     localforage
       .getItem('omikuji-20200801')
-      .then((value): void => {
+      .then((value) => {
         if (!value) {
           this.setState({ scores: [] });
         } else {
           this.setState({ scores: value });
         }
       })
-      .catch((err): void => console.error(err));
+      .catch((err) => console.error(err));
   }
 
-  public componentDidUpdate(_prevProps: Props, prevState: State): void {
+  public componentDidUpdate(_prevProps: Props, prevState: State) {
     if (this.state.scores !== prevState.scores) {
       localforage
         .setItem('omikuji-20200801', this.state.scores)
-        .catch((err): void => console.error(err));
+        .catch((err) => console.error(err));
     }
   }
 
-  private renderToolbar = (): JSX.Element => (
+  private renderToolbar = () => (
     <Toolbar>
       <div className="left">
         <ToolbarButton onClick={this.toggleDrawer}>
@@ -120,7 +101,7 @@ class App extends React.Component {
     ];
   };
 
-  private increment = (): void => {
+  private increment = () => {
     this.setState((prev: State): { count: number } => {
       return {
         count: prev.count + 1,
@@ -128,20 +109,20 @@ class App extends React.Component {
     });
   };
 
-  private onReload = (): void => {
+  private onReload = () => {
     window.location.reload();
   };
-  private openDrawer = (): void => {
+  private openDrawer = () => {
     this.setState({ drawerOpen: true });
   };
-  private closeDrawer = (): void => {
+  private closeDrawer = () => {
     this.setState({ drawerOpen: false });
   };
-  private toggleDrawer = (): void => {
+  private toggleDrawer = () => {
     this.setState({ drawerOpen: !this.state.drawerOpen });
   };
 
-  private onDeleteHistory = (): void => {
+  private onDeleteHistory = () => {
     this.setState({
       imgNum: 0,
       cName: 'App-logo',
@@ -151,28 +132,24 @@ class App extends React.Component {
     });
     localforage
       .setItem('omikuji-20190501', this.state.scores)
-      .catch((err): void => {
-        console.error(err);
-      });
+      .catch((err) => console.error(err));
     this.closeDrawer();
   };
 
-  private handleOnConfirm = (): void => {
+  private handleOnConfirm = () => {
     ons.notification.confirm({
       title: '(´･ω･`)',
       message: '本当に消しちゃうの？',
       buttonLabels: ['いいえ', 'はい'],
       cancelable: true,
-      callback: (index: number): void => {
-        if (index === 1) {
-          this.onDeleteHistory();
-        }
+      callback: (index: number) => {
+        if (index === 1) this.onDeleteHistory();
       },
     });
     this.closeDrawer();
   };
 
-  private handleOnClick = (): void => {
+  private handleOnClick = () => {
     if (this.state.count > 2) {
       ons.notification.alert({
         title: '(´･ω･`)',
@@ -195,7 +172,7 @@ class App extends React.Component {
         id: new Date().getTime(),
         oracle: ORACLES[fortune][oracle],
       };
-      setTimeout((): void => {
+      setTimeout(() => {
         this.setState({
           scores: [newItem, ...this.state.scores],
           imgNum: fortune + 1,
@@ -207,7 +184,7 @@ class App extends React.Component {
     }
   };
 
-  public render(): JSX.Element {
+  public render() {
     return (
       <Page renderToolbar={this.renderToolbar}>
         <Splitter>
@@ -218,7 +195,8 @@ class App extends React.Component {
             swipeable={true}
             isOpen={this.state.drawerOpen}
             onClose={this.closeDrawer}
-            onOpen={this.openDrawer}>
+            onOpen={this.openDrawer}
+          >
             <SideBar
               onReload={this.onReload}
               onConfirm={this.handleOnConfirm}
@@ -229,7 +207,7 @@ class App extends React.Component {
               renderTabs={this.renderTabs}
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
-              onPreChange={({ index }): void =>
+              onPreChange={({ index }) =>
                 this.setState({
                   index: index,
                   title: TITLES[index],
