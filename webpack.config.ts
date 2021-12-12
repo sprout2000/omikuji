@@ -16,7 +16,7 @@ const config: Configuration = {
     app: './src/index.tsx',
   },
   output: {
-    path: path.resolve(__dirname, 'docs'),
+    path: path.resolve(__dirname, 'public'),
     publicPath: '',
     filename: '[name].js',
     assetModuleFilename: 'images/[name][ext]',
@@ -71,7 +71,7 @@ const config: Configuration = {
   performance: { hints: false },
   devtool: isDev ? 'inline-source-map' : undefined,
   devServer: {
-    static: './dist',
+    static: './public',
     port: 7777,
     open: true,
   },
