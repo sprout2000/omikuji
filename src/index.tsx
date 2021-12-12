@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ons from 'onsenui';
 
-import App from './Components/App';
+import { App } from './Components/App';
 
 import 'onsenui/css/onsenui.min.css';
 import 'onsenui/css/onsen-css-components.min.css';
