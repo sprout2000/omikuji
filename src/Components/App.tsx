@@ -19,6 +19,7 @@ import { HomePage } from './HomePage';
 import { HistoryPage } from './HistoryPage';
 
 import { oracles } from '../lib/oracles';
+import { isScores } from '../lib/isScores';
 
 type Props = {
   title: string;
@@ -51,13 +52,7 @@ export class App extends React.Component {
   public componentDidMount() {
     localforage
       .getItem('omikuji-20200801')
-      .then((value) => {
-        if (!value) {
-          this.setState({ scores: [] });
-        } else {
-          this.setState({ scores: value });
-        }
-      })
+      .then((value) => isScores(value) && this.setState({ scores: value }))
       .catch((err) => console.error(err));
   }
 
