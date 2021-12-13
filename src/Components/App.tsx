@@ -1,7 +1,4 @@
 import React from 'react';
-
-import localforage from 'localforage';
-import ons from 'onsenui';
 import {
   Page,
   Toolbar,
@@ -13,6 +10,8 @@ import {
   SplitterSide,
   SplitterContent,
 } from 'react-onsenui';
+import ons from 'onsenui';
+import localforage from 'localforage';
 
 import { SideBar } from './SideBar';
 import { HomePage } from './HomePage';
