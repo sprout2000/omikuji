@@ -14,10 +14,11 @@ import {
   SplitterContent,
 } from 'react-onsenui';
 
-import { Oracles } from './Oracles';
 import { SideBar } from './SideBar';
 import { HomePage } from './HomePage';
 import { HistoryPage } from './HistoryPage';
+
+import { oracles } from '../lib/oracles';
 
 type Props = {
   title: string;
@@ -71,7 +72,7 @@ export class App extends React.Component {
   private renderToolbar = () => (
     <Toolbar>
       <div className="left">
-        <ToolbarButton onClick={this.toggleDrawer}>
+        <ToolbarButton onClick={this.onToggleDrawer}>
           <Icon icon="md-menu" />
         </ToolbarButton>
       </div>
@@ -85,7 +86,7 @@ export class App extends React.Component {
         content: (
           <HomePage
             key="Home"
-            omikuji={this.handleOnClick}
+            onClick={this.onClick}
             imgNum={this.state.imgNum}
             cName={this.state.cName}
             oracle={this.state.oracle}
@@ -112,13 +113,16 @@ export class App extends React.Component {
   private onReload = () => {
     window.location.reload();
   };
-  private openDrawer = () => {
+
+  private onOpenDrawer = () => {
     this.setState({ drawerOpen: true });
   };
-  private closeDrawer = () => {
+
+  private onCloseDrawer = () => {
     this.setState({ drawerOpen: false });
   };
-  private toggleDrawer = () => {
+
+  private onToggleDrawer = () => {
     this.setState({ drawerOpen: !this.state.drawerOpen });
   };
 
@@ -130,13 +134,15 @@ export class App extends React.Component {
       scores: [],
       count: 0,
     });
+
     localforage
       .setItem('omikuji-20190501', this.state.scores)
       .catch((err) => console.error(err));
-    this.closeDrawer();
+
+    this.onCloseDrawer();
   };
 
-  private handleOnConfirm = () => {
+  private onConfirm = () => {
     ons.notification.confirm({
       title: '(´･ω･`)',
       message: '本当に消しちゃうの？',
@@ -146,10 +152,11 @@ export class App extends React.Component {
         if (index === 1) this.onDeleteHistory();
       },
     });
-    this.closeDrawer();
+
+    this.onCloseDrawer();
   };
 
-  private handleOnClick = () => {
+  private onClick = () => {
     if (this.state.count > 2) {
       ons.notification.alert({
         title: '(´･ω･`)',
@@ -159,19 +166,23 @@ export class App extends React.Component {
       });
     } else {
       this.increment();
+
       this.setState({
         imgNum: 0,
         cName: 'Running',
         disable: !this.state.disable,
       });
+
       const fortune = Math.floor(Math.random() * FORTUNES.length);
-      const oracle = Math.floor(Math.random() * Oracles[fortune].length);
+      const oracle = Math.floor(Math.random() * oracles[fortune].length);
+
       const newItem = {
         fortune: FORTUNES[fortune],
         createdAt: new Date().toLocaleString(),
         id: new Date().getTime(),
-        oracle: Oracles[fortune][oracle],
+        oracle: oracles[fortune][oracle],
       };
+
       setTimeout(() => {
         this.setState({
           scores: [newItem, ...this.state.scores],
@@ -194,13 +205,10 @@ export class App extends React.Component {
             collapse={true}
             swipeable={true}
             isOpen={this.state.drawerOpen}
-            onClose={this.closeDrawer}
-            onOpen={this.openDrawer}
+            onClose={this.onCloseDrawer}
+            onOpen={this.onOpenDrawer}
           >
-            <SideBar
-              onReload={this.onReload}
-              onConfirm={this.handleOnConfirm}
-            />
+            <SideBar onReload={this.onReload} onConfirm={this.onConfirm} />
           </SplitterSide>
           <SplitterContent>
             <Tabbar

@@ -1,11 +1,11 @@
 import { Page, Button, Card, Icon } from 'react-onsenui';
 
 type Props = {
-  omikuji: (e?: React.MouseEvent<HTMLElement>) => void;
-  imgNum: number;
   cName: string;
   oracle: string;
+  imgNum: number;
   disable: boolean;
+  onClick: (e?: React.MouseEvent<HTMLElement>) => void;
 };
 
 const IMAGES = [
@@ -26,7 +26,7 @@ export const HomePage = (props: Props) => (
         <img src={IMAGES[props.imgNum]} alt="logo" className={props.cName} />
       </div>
       <div className="button-container">
-        <Button onClick={props.omikuji} disabled={props.disable ? true : false}>
+        <Button onClick={props.onClick} disabled={props.disable ? true : false}>
           <Icon icon="fa-tags" style={{ marginRight: 5 }} />
           おみくじ
         </Button>
