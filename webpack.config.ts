@@ -1,5 +1,6 @@
 import path from 'path';
 import { Configuration } from 'webpack';
+import {} from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
