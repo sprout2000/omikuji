@@ -1,8 +1,8 @@
-# omikuji
+# お神籤
 
-Omikuji (Japanese fortune cookie) PWA
+## Privacy Policy
 
-https://sprout2000.github.io/omikuji
+**プライバシーポリシー**
 
-<img width="252" alt="02" src="https://user-images.githubusercontent.com/27530743/50554928-349ac080-0d07-11e9-9419-92bba8ed9bc1.png">
-<img width="252" alt="04" src="https://user-images.githubusercontent.com/27530743/50584758-ddd2e980-0eb4-11e9-8ddd-72b989b5c057.png">
+- お神籤アプリとその開発者は、アプリを利用するユーザーのいかなる個人情報もプライバシーに関する情報も収集することはありません
+- お神籤アプリとその開発者は、アプリを利用するユーザーのいかなる個人情報もプライバシーに関する情報も第三者に提供することはありません
