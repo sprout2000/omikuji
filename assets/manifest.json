@@ -1,7 +1,7 @@
 {
-  "short_name": "おみくじ",
-  "name": "おみくじ",
-  "description": "おみくじアプリ PWA",
+  "short_name": "お神籤",
+  "name": "お神籤",
+  "description": "お神籤アプリ PWA",
   "lang": "ja",
   "icons": [
     {
