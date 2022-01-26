@@ -14,10 +14,10 @@ export default defineConfig({
     react(),
     VitePWA({
       manifest: {
-        short_name: 'お神籤',
-        name: 'お神籤',
-        description: 'お神籤アプリ PWA',
         lang: 'ja',
+        name: 'お神籤',
+        short_name: 'お神籤',
+        description: 'お神籤アプリPWA',
         icons: [
           {
             src: './icons/manifest-icon-144.png',
