@@ -8,15 +8,24 @@ type Props = {
   onClick: (e?: React.MouseEvent<HTMLElement>) => void;
 };
 
+import Omikuji from '../images/omikuji.png';
+import Daikichi from '../images/daikichi.png';
+import Kichi from '../images/kichi.png';
+import Chuukichi from '../images/chuukichi.png';
+import Syoukichi from '../images/syoukichi.png';
+import Suekichi from '../images/suekichi.png';
+import Kyou from '../images/kyou.png';
+import Daikyou from '../images/daikyou.png';
+
 const IMAGES = [
-  'images/omikuji.png',
-  'images/daikichi.png',
-  'images/kichi.png',
-  'images/chuukichi.png',
-  'images/syoukichi.png',
-  'images/suekichi.png',
-  'images/kyou.png',
-  'images/daikyou.png',
+  Omikuji,
+  Daikichi,
+  Kichi,
+  Chuukichi,
+  Syoukichi,
+  Suekichi,
+  Kyou,
+  Daikyou,
 ];
 
 export const HomePage = (props: Props) => (

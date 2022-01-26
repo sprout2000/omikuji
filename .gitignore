@@ -1,9 +1,5 @@
 node_modules/
 public/
-build/
-docs/
-dist/
-gh-pages
 .env
 .DS_Store
 yarn-*.log

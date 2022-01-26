@@ -1,5 +1,3 @@
-import type { Scores } from './storageScores';
-
 const isString = (value: unknown): value is string => typeof value === 'string';
 const isNumber = (value: unknown): value is number => typeof value === 'number';
 type ArrayCheckOption = 'all' | 'first';
@@ -26,7 +24,7 @@ const isObject = (value: unknown): value is Record<string, unknown> =>
 export const isScores = (
   arg_0: unknown,
   checkOpt: ArrayCheckOption = 'all'
-): arg_0 is Scores =>
+): arg_0 is Score[] =>
   isArray(
     (arg_1: unknown): boolean =>
       isObject(arg_1) &&

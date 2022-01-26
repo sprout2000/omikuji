@@ -20,6 +20,8 @@ import { HistoryPage } from './HistoryPage';
 import { oracles } from '../lib/oracles';
 import { isScores } from '../lib/isScores';
 
+import './App.css';
+
 type Props = {
   title: string;
   scores: Score[];

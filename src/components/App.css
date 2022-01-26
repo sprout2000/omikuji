@@ -64,9 +64,9 @@ a:active {
 
 .drawer-header {
   height: 120px;
-  background-image: url('cover.png');
+  background-image: url('../images/cover.png');
   background-size: cover;
-  background-color: #f5f5f5;
+  background-color: #fff9d9;
   display: flex;
   justify-content: center;
   padding-left: 20px;
